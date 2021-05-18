@@ -1,0 +1,57 @@
+<Window x:Class="TruthTableGen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="650" Width="575" Title="Оценщик логических выражений" SizeChanged="Window_SizeChanged"
+		Icon="icons8-огонь-96.ico">
+		
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="8*"/>
+			<ColumnDefinition Width="561*"/>
+		</Grid.ColumnDefinitions>
+		<TextBox Name="Query" HorizontalAlignment="Left" Height="23" Margin="2,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="470" TextChanged="Query_TextChanged" PreviewKeyDown="Query_PreviewKeyDown" Grid.Column="1"/>
+		<Label Content="Введите выражение:" HorizontalAlignment="Left" Margin="4,6,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
+		<Button Name="Go" Content="Go" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" Margin="477,32,0,0" Height="23" Click="Button_Click" Grid.Column="1"/>
+		<Label Content="Stepanov L.I." HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,0,9.8,10" VerticalAlignment="Bottom" Width="110" Grid.Column="1"/>
+		<TabControl Name="TabContainer" HorizontalAlignment="Left" Margin="2,75,0,0" VerticalAlignment="Top" MinWidth="535" MinHeight="500" Grid.Column="1">
+			<TabItem Header="Таблица истинности" ToolTip="The truth table of the above expression">
+				<Grid Background="#FFE5E5E5">
+					<Label Name="TableLabel" Content="Truth Table" HorizontalAlignment="Left" FontSize="15" Margin="0,10,0,0" VerticalAlignment="Top"/>
+					<DataGrid Name="TruthTable" HorizontalAlignment="Left" VerticalAlignment="Top" AreRowDetailsFrozen="True" Margin="10, 50" HeadersVisibility="Column" CanUserResizeRows="False" RowDetailsVisibilityMode="Visible" IsReadOnly="True" ClipboardCopyMode="IncludeHeader" FontWeight="Bold" FontSize="15"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="СКНФ" ToolTip="The СКНФ of the above expression">
+				<Grid Background="#FFE5E5E5">
+					<TextBox Name="Pcnf" HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" Margin="10, 50" FontSize="15" FontWeight="Bold" AcceptsReturn="True"/>
+					<Label Name="PcnfLabel" Content="СКНФ" HorizontalAlignment="Left" FontSize="15" Margin="0,10,0,0" VerticalAlignment="Top"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="СДНФ" ToolTip="The PDNF of the above expression">
+				<Grid Background="#FFE5E5E5">
+					<TextBox Name="Pdnf" HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" Margin="10, 50" FontSize="15" FontWeight="Bold" AcceptsReturn="True"/>
+					<Label Name="PdnfLabel" Content="СДНФ" HorizontalAlignment="Left" FontSize="15" Margin="0,10,0,0" VerticalAlignment="Top"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Дерево вычислений" ToolTip="The parsing tree of the above expression">
+				<Grid Background="#FFE5E5E5" ScrollViewer.CanContentScroll="True">
+					<ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 50" Width="Auto" Height="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+						<Grid Background="White" Name="TreePlan" ScrollViewer.CanContentScroll="True"/>
+					</ScrollViewer>
+					<Label Name="PlanLabel" Content="Tree Plan" HorizontalAlignment="Left" FontSize="15" Margin="0,10,0,0" VerticalAlignment="Top"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="План вычисления" ToolTip="Plan for evaluating the query">
+				<Grid Background="#FFE5E5E5">
+					<TextBox Name="Plan" HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" Margin="10, 50" FontSize="15" FontWeight="Bold" AcceptsReturn="True"/>
+					<Label Name="EvalLabel" Content="Truth Table" HorizontalAlignment="Left" FontSize="15" Margin="0,10,0,0" VerticalAlignment="Top"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Инструкция" IsSelected="True">
+				<Grid Background="#FFE5E5E5">
+					<TextBlock Name="Instruction" Background="White"  HorizontalAlignment="Left" Height="Auto" TextWrapping="Wrap" VerticalAlignment="Top" Width="Auto" Margin="10, 50"/>
+					<Label  Content="Инструкция" HorizontalAlignment="Left" FontSize="15" Margin="0,10,0,0" VerticalAlignment="Top"/>
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
